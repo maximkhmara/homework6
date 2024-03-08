@@ -57,18 +57,6 @@ let users = [
 }
 ]
 
-const phones = users
-  .filter(user => (user.balance.replace(/[$,]/g, '') > 2000))
-  .map(users => users.phone);
+console.log(`Тел: ${users.filter(user => (user.balance.replace(/[$,]/g, '') > 2000)).map(users => users.phone)}`);
 
-console.log(`Телефони користувачів з балансом більше $2000: ${phones}`);
-
-
-let totalSum = 0;
-
-users.forEach(user => {
-  const userBalance = parseFloat(user.balance.replace(/[$,]/g, ''));
-  totalSum += userBalance;
-});
-
-console.log(`Сума всіх балансів користувачів: $${totalSum.toFixed(2)}`);
+console.log(`Сума: $${users.reduce((acc, crnt) => acc + parseFloat(crnt.balance.replace(/[$,]/g, '')),0)}`);
